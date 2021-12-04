@@ -260,6 +260,32 @@ $ pip install beautifulsoup4
 $ pip install pandas
 ```
 
+<h3>Passo #9 - Darknet</h3>
+
+```
+$ git clone https://github.com/AlexeyAB/darknet.git
+$ cd darknet
+$ make
+$ ./darknet detector test cfg/coco.data cfg/yolov4.cfg yolov4.weights data/dog.jpg
+```
+
+**Config below works too**
+```
+GPU=0
+CUDNN=0
+CUDNN_HALF=0
+OPENCV=1
+```
+
+**It is not working with GPU support**
+
+```
+2 errors detected in the compilation of "/tmp/tmpxft_00001cee_00000000-7_network_kernels.compute_70.cpp1.ii".
+Makefile:187: recipe for target 'obj/network_kernels.o' failed
+make: *** [obj/network_kernels.o] Error 1
+
+```
+
 
 Referências
 
