@@ -1,4 +1,4 @@
-## CUDA 10.0 e cuDNN 7.6.4 no Ubuntu 18.04.5 - TensorFlow 2.0 e OpenCV GPU - GTX 1660
+## CUDA 10.0 e cuDNN 7.6.4 no Ubuntu 18.04.5 - TensorFlow 2.0, OpenCV GPU e Darknet CPU - GTX 1660
 
 <h3>Passo #1 - Instalação das dependências</h3>
 
@@ -97,7 +97,7 @@ $ sudo cp -P include/* /usr/local/cuda/include/
 $ cd ~
 ```
 
-<h3>Passo #3 - Instalar pip e ambiente virtual</h3>
+### Passo #3 - Instalar pip e criar ambiente virtual
 
 ```
 $ wget https://bootstrap.pypa.io/get-pip.py
@@ -136,7 +136,7 @@ $ mv opencv-4.4.0 opencv
 $ mv opencv_contrib-4.4.0 opencv_contrib
 ```
 
-<h3>Passo #4 - Determinar a arquitetura da GPU</h3>
+### Determinar a arquitetura da GPU
 
 <p>Acessar o link e procurar a GPU que a sua máquina possui. A série 16xx não aparece, mas é possível encontrar descrito no site da NVIDIA. A seguir também estão os links da 1660, arquitetura Turing, logo, valor de 7.5.</p>
 
@@ -147,7 +147,7 @@ $ mv opencv_contrib-4.4.0 opencv_contrib
 <li>https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#compute-capability</li>
 </ul>
 
-<h3>Passo #5 - Configurar OpenCV com suporte para GPU NVIDIA</h3>
+### Configurar OpenCV com suporte para GPU NVIDIA
 
 <p>Ajustar o valor de <b>ARCH_BIN</b> de acordo com o valor encontrado (sua GPU). Para a GTX 1660 é 7.5: </p>
 
@@ -178,7 +178,7 @@ Copiar o arquivo de --install path. No meu caso foi mostrado:
 --   cuDNN:                         YES (ver 7.6.4)
 ```
 
-<h3>Passo #6 - Compilar OpenCV com suporte para GPU ao módulo "dnn"</h3>
+### Compilar OpenCV com suporte para GPU ao módulo "dnn"
 
 <p>Para processador com 8 núcleos o comando é: </p>
 
@@ -186,7 +186,7 @@ Copiar o arquivo de --install path. No meu caso foi mostrado:
 make -j8
 ```
 
-<h3>Passo #7 - Instalar OpenCV com suporte para GPU ao módulo "dnn"</h3>
+### Instalar OpenCV com suporte para GPU ao módulo "dnn"
 
 ```
 $ sudo make install
@@ -246,7 +246,7 @@ net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 ```
 
-<h3>Passo #8 - TensorFlow e alguns pacotes extras</h3>
+### Passo #4 - TensorFlow e alguns pacotes extras
 
 ```
 $ pip install tensorflow-gpu==2.0.0 #Excluir o termo '-gpu' caso seja feita para CPU
@@ -261,7 +261,7 @@ $ pip install pandas
 ```
 
 
-<h3>Passo #9 - Darknet CPU</h3>
+### Passo #5 - Darknet CPU
 
 **Apenas suporte à CPU porque**
 
