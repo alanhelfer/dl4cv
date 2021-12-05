@@ -1,4 +1,4 @@
-## GTX 1660
+## CUDA 10.0 e cuDNN 7.6.4 no Ubuntu 18.04.5 - TensorFlow 2.0 e OpenCV GPU - GTX 1660
 
 <h3>Passo #1 - Instalação das dependências</h3>
 
@@ -260,30 +260,27 @@ $ pip install beautifulsoup4
 $ pip install pandas
 ```
 
-<h3>Passo #9 - Darknet</h3>
+
+<h3>Passo #9 - Darknet CPU</h3>
+
+**Apenas suporte à CPU porque**
+
+Requisitos CUDA >= 10.2: OpenCV >= 2.4 cuDNN >= 8.0.2 GPU with CC >= 3.0:
+
+* https://github.com/AlexeyAB/darknet#requirements-for-windows-linux-and-macos
 
 ```
 $ git clone https://github.com/AlexeyAB/darknet.git
 $ cd darknet
-$ make
+```
+Editar o arquivo Makefile
+
+* OPENCV=1
+* AVX=1
+
+```
+$ make -j8
 $ ./darknet detector test cfg/coco.data cfg/yolov4.cfg yolov4.weights data/dog.jpg
-```
-
-**Config below works too**
-```
-GPU=0
-CUDNN=0
-CUDNN_HALF=0
-OPENCV=1
-```
-
-**It is not working with GPU support**
-
-```
-2 errors detected in the compilation of "/tmp/tmpxft_00001cee_00000000-7_network_kernels.compute_70.cpp1.ii".
-Makefile:187: recipe for target 'obj/network_kernels.o' failed
-make: *** [obj/network_kernels.o] Error 1
-
 ```
 
 
