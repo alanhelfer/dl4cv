@@ -272,14 +272,23 @@ Editar o arquivo Makefile
 * OPENCV=0
 * AVX=1
 * OPENMP=1
+* LIBSO=1
 * ARCH= -gencode arch=compute_75,code=[sm_75,compute_75]
 
-**[CUDNN_HALF=1 maybe hides bounding boxes in output](https://towardsdatascience.com/installing-ubuntu-20-04-lts-and-running-yolov4-and-yolov5-on-it-2ca0c93e244a)
 
 ```
 $ make -j8
 $ ./darknet detector test cfg/coco.data cfg/yolov4.cfg yolov4.weights data/dog.jpg
 ```
+
+
+* [**CUDNN_HALF=1** maybe hides bounding boxes in output](https://towardsdatascience.com/installing-ubuntu-20-04-lts-and-running-yolov4-and-yolov5-on-it-2ca0c93e244a)
+* [**LIBSO** permite a execução dos algoritmos de teste, por exemplo na Webcam:](https://fantashit.com/oserror-libdarknet-so-cannot-open-shared-object-file-no-such-file-or-directory/)
+
+```
+python darknet_video.py
+```
+
 
 ## Agradecimentos
 
