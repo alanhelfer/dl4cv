@@ -1,3 +1,6 @@
+# Instalação CUDA 11.0.3 e cuDNN 8.0.5 no Ubuntu 18.04.5 - TensorFlow, OpenCV e Darknet
+
+
 YOLOV4
 
 Requisitos
@@ -30,6 +33,7 @@ $ sudo add-apt-repository ppa:graphics-drivers/ppa
 $ sudo apt update
 
 $ sudo apt-get install nvidia-driver-450
+$ sudo reboot now
 
 $ cd ~
 $ mkdir installers
@@ -244,8 +248,11 @@ net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
 <h3>Passo #8 - TensorFlow e alguns pacotes extras</h3>
 
+Versão do TensorFlow
+https://www.tensorflow.org/install/source_windows#gpu
+
 ```
-$ pip install tensorflow-gpu==2.0.0 #Excluir o termo '-gpu' caso seja feita para CPU
+$ pip install tensorflow-gpu==2.4.0 #Excluir o termo '-gpu' caso seja feita para CPU
 $ pip install scikit-image
 $ pip install pillow
 $ pip install scikit-learn
@@ -253,6 +260,16 @@ $ pip install matplotlib
 $ pip install progressbar2
 $ pip install beautifulsoup4
 $ pip install pandas
+```
+
+Se for possível usar a GPU:
+
+```
+$ workon dl4cv
+$ python
+>>> import tensorflow as tf
+>>> tf.test.is_gpu_available()
+True
 ```
 
 <h3>Passo #9 - Darknet</h3>
@@ -264,10 +281,3 @@ $ make
 $ ./darknet detector test cfg/coco.data cfg/yolov4.cfg yolov4.weights data/dog.jpg
 ```
 
-**Config below works too**
-```
-GPU=0
-CUDNN=0
-CUDNN_HALF=0
-OPENCV=1
-```
