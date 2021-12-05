@@ -9,11 +9,6 @@ OpenCV >= 2.4
 cuDNN >= 8.0.2 
 GPU with CC >= 3.0:
 
-Instalação
-Testando
-https://www.youtube.com/watch?v=5jmxjI-Pm6Q
-https://techzizou.com/install-cuda-and-cudnn-on-windows-and-linux/
-
 ```
 $ sudo apt-get update
 $ sudo apt-get upgrade
@@ -277,7 +272,28 @@ True
 ```
 $ git clone https://github.com/AlexeyAB/darknet.git
 $ cd darknet
-$ make
+```
+Editar o arquivo Makefile
+
+* GPU=1
+* CUDNN=1
+* CUDNN_HALF=0
+* OPENCV=0
+* AVX=1
+* OPENMP=1
+* ARCH= -gencode arch=compute_75,code=[sm_75,compute_75]
+
+**[CUDNN_HALF=1 maybe hides bounding boxes in output](https://towardsdatascience.com/installing-ubuntu-20-04-lts-and-running-yolov4-and-yolov5-on-it-2ca0c93e244a)
+
+```
+$ make -j8
 $ ./darknet detector test cfg/coco.data cfg/yolov4.cfg yolov4.weights data/dog.jpg
 ```
 
+## Agradecimentos
+
+### techzizou
+
+* https://www.youtube.com/watch?v=5jmxjI-Pm6Q
+* https://techzizou.com/install-cuda-and-cudnn-on-windows-and-linux/
+* https://techzizou.com/yolo-installation-on-windows-and-linux/
